@@ -1,0 +1,30 @@
+{
+    "sourceFile": "electron-builder.yml",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1689309891520,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1689310007705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,5 +38,7 @@\n appImage:\n   artifactName: ${name}-${version}.${ext}\n npmRebuild: false\n publish:\n-  - github\n+  provider: github\n+  repo: alist-client\n+\n"
+                },
+                {
+                    "date": 1689310031692,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,5 +40,6 @@\n npmRebuild: false\n publish:\n   provider: github\n   repo: alist-client\n+  owner: bzw1204\n \n"
+                },
+                {
+                    "date": 1689310088383,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,5 +41,6 @@\n publish:\n   provider: github\n   repo: alist-client\n   owner: bzw1204\n+  releaseType: release\n \n"
+                }
+            ],
+            "date": 1689309891520,
+            "name": "Commit-0",
+            "content": "appId: com.electron.app\nproductName: alist-client\ndirectories:\n  buildResources: build\nfiles:\n  - '!**/.vscode/*'\n  - '!src/*'\n  - '!electron.vite.config.{js,ts,mjs,cjs}'\n  - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'\n  - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'\n  - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'\nasarUnpack:\n  - resources/**\nafterSign: build/notarize.js\nwin:\n  executableName: alist-client\nnsis:\n  artifactName: ${name}-${version}-setup.${ext}\n  shortcutName: ${productName}\n  uninstallDisplayName: ${productName}\n  createDesktopShortcut: always\nmac:\n  entitlementsInherit: build/entitlements.mac.plist\n  extendInfo:\n    - NSCameraUsageDescription: Application requests access to the device's camera.\n    - NSMicrophoneUsageDescription: Application requests access to the device's microphone.\n    - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.\n    - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.\ndmg:\n  artifactName: ${name}-${version}.${ext}\nlinux:\n  target:\n    - AppImage\n    - snap\n    - deb\n  maintainer: electronjs.org\n  category: Utility\nappImage:\n  artifactName: ${name}-${version}.${ext}\nnpmRebuild: false\npublish:\n  - github\n"
+        }
+    ]
+}

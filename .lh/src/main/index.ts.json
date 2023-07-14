@@ -1,0 +1,54 @@
+{
+    "sourceFile": "src/main/index.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1689308187353,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1689308195139,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,8 +40,10 @@\n // initialization and is ready to create browser windows.\n // Some APIs can only be used after this event occurs.\n app.whenReady().then(() => {\n   autoUpdater.autoDownload = false\n+\n+  autoUpdater.checkForUpdatesAndNotify()\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n \n   // Default open or close DevTools by F12 in development\n"
+                },
+                {
+                    "date": 1689308271468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n-import { app, shell, BrowserWindow } from 'electron'\n+import { app, shell, BrowserWindow, dialog } from 'electron'\n import { join } from 'path'\n import { electronApp, optimizer, is } from '@electron-toolkit/utils'\n import icon from '../../resources/icon.png?asset'\n import { autoUpdater } from 'electron-updater'\n+import { error } from 'console'\n \n function createWindow(): void {\n   // Create the browser window.\n   const mainWindow = new BrowserWindow({\n@@ -42,8 +43,12 @@\n app.whenReady().then(() => {\n   autoUpdater.autoDownload = false\n \n   autoUpdater.checkForUpdatesAndNotify()\n+  autoUpdater.on('error', (error) => {\n+    dialog.showErrorBox('Error', error)\n+  })\n+\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n \n   // Default open or close DevTools by F12 in development\n"
+                },
+                {
+                    "date": 1689308307396,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n   autoUpdater.autoDownload = false\n \n   autoUpdater.checkForUpdatesAndNotify()\n   autoUpdater.on('error', (error) => {\n-    dialog.showErrorBox('Error', error)\n+    dialog.showErrorBox('Error', error === null ? '未知错误' : error.message)\n   })\n \n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n"
+                },
+                {
+                    "date": 1689308334475,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,16 @@\n   autoUpdater.checkForUpdatesAndNotify()\n   autoUpdater.on('error', (error) => {\n     dialog.showErrorBox('Error', error === null ? '未知错误' : error.message)\n   })\n-\n+  autoUpdater.on('update-available', () => {\n+    dialog.showMessageBox({\n+      type: 'info',\n+      title: '更新提示',\n+      message: '发现新版本,是否更新?',\n+      buttons: ['更新', '取消']\n+    })\n+  })\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n \n   // Default open or close DevTools by F12 in development\n"
+                },
+                {
+                    "date": 1689308350362,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,14 +47,21 @@\n   autoUpdater.on('error', (error) => {\n     dialog.showErrorBox('Error', error === null ? '未知错误' : error.message)\n   })\n   autoUpdater.on('update-available', () => {\n-    dialog.showMessageBox({\n-      type: 'info',\n-      title: '更新提示',\n-      message: '发现新版本,是否更新?',\n-      buttons: ['更新', '取消']\n-    })\n+    dialog.showMessageBox(\n+      {\n+        type: 'info',\n+        title: '更新提示',\n+        message: '发现新版本,是否更新?',\n+        buttons: ['更新', '取消']\n+      },\n+      (buttonIndex) => {\n+        if (buttonIndex === 0) {\n+          autoUpdater.downloadUpdate()\n+        }\n+      }\n+    )\n   })\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n \n"
+                },
+                {
+                    "date": 1689308469901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,23 +46,16 @@\n   autoUpdater.checkForUpdatesAndNotify()\n   autoUpdater.on('error', (error) => {\n     dialog.showErrorBox('Error', error === null ? '未知错误' : error.message)\n   })\n-  autoUpdater.on('update-available', () => {\n-    dialog.showMessageBox(\n-      {\n-        type: 'info',\n-        title: '更新提示',\n-        message: '发现新版本,是否更新?',\n-        buttons: ['更新', '取消']\n-      },\n-      (buttonIndex) => {\n-        if (buttonIndex === 0) {\n-          autoUpdater.downloadUpdate()\n-        }\n-      }\n-    )\n-  })\n+  autoUpdater.on('update-available', () =>\n+    dialog.showMessageBox({\n+      type: 'info',\n+      title: '更新提示',\n+      message: '发现新版本,是否更新?',\n+      buttons: ['更新', '取消']\n+    })\n+  )\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n \n   // Default open or close DevTools by F12 in development\n"
+                },
+                {
+                    "date": 1689308509060,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,9 @@\n-import { app, shell, BrowserWindow, dialog } from 'electron'\n+import { electronApp, is, optimizer } from '@electron-toolkit/utils'\n+import { BrowserWindow, app, dialog, shell } from 'electron'\n+import { autoUpdater } from 'electron-updater'\n import { join } from 'path'\n-import { electronApp, optimizer, is } from '@electron-toolkit/utils'\n import icon from '../../resources/icon.png?asset'\n-import { autoUpdater } from 'electron-updater'\n-import { error } from 'console'\n \n function createWindow(): void {\n   // Create the browser window.\n   const mainWindow = new BrowserWindow({\n@@ -54,8 +53,15 @@\n       message: '发现新版本,是否更新?',\n       buttons: ['更新', '取消']\n     })\n   )\n+  autoUpdater.on('update-not-available', () => {\n+    dialog.showMessageBox({\n+      type: 'info',\n+      title: '更新提示',\n+      message: '当前已是最新版本'\n+    })\n+  })\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n \n   // Default open or close DevTools by F12 in development\n"
+                },
+                {
+                    "date": 1689309891527,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import { autoUpdater } from 'electron-updater'\n import { join } from 'path'\n import icon from '../../resources/icon.png?asset'\n \n+export const isDev = process.env.NODE_ENV === 'development'\n function createWindow(): void {\n   // Create the browser window.\n   const mainWindow = new BrowserWindow({\n     width: 900,\n@@ -40,9 +41,11 @@\n // initialization and is ready to create browser windows.\n // Some APIs can only be used after this event occurs.\n app.whenReady().then(() => {\n   autoUpdater.autoDownload = false\n-\n+  if (isDev) {\n+    autoUpdater.\n+  }\n   autoUpdater.checkForUpdatesAndNotify()\n   autoUpdater.on('error', (error) => {\n     dialog.showErrorBox('Error', error === null ? '未知错误' : error.message)\n   })\n"
+                },
+                {
+                    "date": 1689310105564,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n // Some APIs can only be used after this event occurs.\n app.whenReady().then(() => {\n   autoUpdater.autoDownload = false\n   if (isDev) {\n-    autoUpdater.\n+    console.log('dev')\n   }\n   autoUpdater.checkForUpdatesAndNotify()\n   autoUpdater.on('error', (error) => {\n     dialog.showErrorBox('Error', error === null ? '未知错误' : error.message)\n"
+                }
+            ],
+            "date": 1689308187353,
+            "name": "Commit-0",
+            "content": "import { app, shell, BrowserWindow } from 'electron'\nimport { join } from 'path'\nimport { electronApp, optimizer, is } from '@electron-toolkit/utils'\nimport icon from '../../resources/icon.png?asset'\nimport { autoUpdater } from 'electron-updater'\n\nfunction createWindow(): void {\n  // Create the browser window.\n  const mainWindow = new BrowserWindow({\n    width: 900,\n    height: 670,\n    show: false,\n    autoHideMenuBar: true,\n    ...(process.platform === 'linux' ? { icon } : {}),\n    webPreferences: {\n      preload: join(__dirname, '../preload/index.js'),\n      sandbox: false\n    }\n  })\n\n  mainWindow.on('ready-to-show', () => {\n    mainWindow.show()\n  })\n\n  mainWindow.webContents.setWindowOpenHandler((details) => {\n    shell.openExternal(details.url)\n    return { action: 'deny' }\n  })\n\n  // HMR for renderer base on electron-vite cli.\n  // Load the remote URL for development or the local html file for production.\n  if (is.dev && process.env['ELECTRON_RENDERER_URL']) {\n    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])\n  } else {\n    mainWindow.loadFile(join(__dirname, '../renderer/index.html'))\n  }\n}\n\n// This method will be called when Electron has finished\n// initialization and is ready to create browser windows.\n// Some APIs can only be used after this event occurs.\napp.whenReady().then(() => {\n  autoUpdater.autoDownload = false\n  // Set app user model id for windows\n  electronApp.setAppUserModelId('com.electron')\n\n  // Default open or close DevTools by F12 in development\n  // and ignore CommandOrControl + R in production.\n  // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils\n  app.on('browser-window-created', (_, window) => {\n    optimizer.watchWindowShortcuts(window)\n  })\n\n  createWindow()\n\n  app.on('activate', function () {\n    // On macOS it's common to re-create a window in the app when the\n    // dock icon is clicked and there are no other windows open.\n    if (BrowserWindow.getAllWindows().length === 0) createWindow()\n  })\n})\n\n// Quit when all windows are closed, except on macOS. There, it's common\n// for applications and their menu bar to stay active until the user quits\n// explicitly with Cmd + Q.\napp.on('window-all-closed', () => {\n  if (process.platform !== 'darwin') {\n    app.quit()\n  }\n})\n\n// In this file you can include the rest of your app\"s specific main process\n// code. You can also put them in separate files and require them here.\n"
+        }
+    ]
+}
