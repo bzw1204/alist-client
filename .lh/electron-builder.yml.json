@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1689309891520,
@@ -20,6 +20,14 @@
                 {
                     "date": 1689310088383,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,5 +41,6 @@\n publish:\n   provider: github\n   repo: alist-client\n   owner: bzw1204\n+  releaseType: release\n \n"
+                },
+                {
+                    "date": 1689387206311,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,5 +42,5 @@\n   provider: github\n   repo: alist-client\n   owner: bzw1204\n   releaseType: release\n-\n+  token: $GH_TOKEN\n"
+                },
+                {
+                    "date": 1689387212869,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,5 +42,5 @@\n   provider: github\n   repo: alist-client\n   owner: bzw1204\n   releaseType: release\n-  token: $GH_TOKEN\n+  token: ${GH_TOKEN}\n"
                 }
             ],
             "date": 1689309891520,

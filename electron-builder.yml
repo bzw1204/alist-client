@@ -43,4 +43,4 @@ publish:
   repo: alist-client
   owner: bzw1204
   releaseType: release
-
+  token: ${GH_TOKEN}
