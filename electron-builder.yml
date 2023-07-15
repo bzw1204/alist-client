@@ -43,4 +43,3 @@ publish:
   repo: alist-client
   owner: bzw1204
   releaseType: release
-  token: ${ACCESS_TOKEN}

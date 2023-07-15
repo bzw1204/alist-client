@@ -43,7 +43,7 @@ function createWindow(): void {
 app.whenReady().then(() => {
   autoUpdater.autoDownload = false
   if (isDev) {
-    console.log('dev')
+    autoUpdater.updateConfigPath = join(__dirname, 'dev-app-update.yml')
   }
   autoUpdater.checkForUpdatesAndNotify()
   autoUpdater.on('error', (error) => {

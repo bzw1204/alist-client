@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 11,
             "patches": [
                 {
                     "date": 1689308187353,
@@ -44,6 +44,14 @@
                 {
                     "date": 1689310105564,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n // Some APIs can only be used after this event occurs.\n app.whenReady().then(() => {\n   autoUpdater.autoDownload = false\n   if (isDev) {\n-    autoUpdater.\n+    console.log('dev')\n   }\n   autoUpdater.checkForUpdatesAndNotify()\n   autoUpdater.on('error', (error) => {\n     dialog.showErrorBox('Error', error === null ? '未知错误' : error.message)\n"
+                },
+                {
+                    "date": 1689387971483,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n // Some APIs can only be used after this event occurs.\n app.whenReady().then(() => {\n   autoUpdater.autoDownload = false\n   if (isDev) {\n-    console.log('dev')\n+    autoUpdater.updateConfigPath = path.join(__dirname, 'dev-app-update.yml');\n   }\n   autoUpdater.checkForUpdatesAndNotify()\n   autoUpdater.on('error', (error) => {\n     dialog.showErrorBox('Error', error === null ? '未知错误' : error.message)\n"
+                },
+                {
+                    "date": 1689388085541,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n // Some APIs can only be used after this event occurs.\n app.whenReady().then(() => {\n   autoUpdater.autoDownload = false\n   if (isDev) {\n-    autoUpdater.updateConfigPath = path.join(__dirname, 'dev-app-update.yml');\n+    autoUpdater.updateConfigPath = join(__dirname, 'dev-app-update.yml')\n   }\n   autoUpdater.checkForUpdatesAndNotify()\n   autoUpdater.on('error', (error) => {\n     dialog.showErrorBox('Error', error === null ? '未知错误' : error.message)\n"
                 }
             ],
             "date": 1689308187353,

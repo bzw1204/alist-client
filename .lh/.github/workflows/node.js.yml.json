@@ -1,0 +1,18 @@
+{
+    "sourceFile": ".github/workflows/node.js.yml",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1689388073976,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1689388073976,
+            "name": "Commit-0",
+            "content": "# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node\n# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs\n\nname: Build/release Electron app\n\non:\n  push:\n    branches: [ \"main\" ]\n  pull_request:\n    branches: [ \"main\" ]\njobs:\n  release:\n    runs-on: ${{ matrix.os }}\n\n    strategy:\n      matrix:\n        os: [windows-latest]\n\n    steps:\n      - name: Check out Git repository\n        uses: actions/checkout@v3\n\n      - name: Install Node.js\n        uses: actions/setup-node@v3\n        with:\n          node-version: 16\n\n      - name: Install Dependencies\n        run: npm install\n      - name: build-win\n        if: matrix.os == 'windows-latest'\n        run: npm run build:win\n\n      - name: release\n        uses: softprops/action-gh-release@v1\n        with:\n          draft: true\n          files: |\n            dist/*.exe\n            dist/*.zip\n            dist/*.dmg\n            dist/*.AppImage\n            dist/*.snap\n            dist/*.deb\n            dist/*.rpm\n            dist/*.tar.gz\n            dist/*.yml\n            dist/*.blockmap\n        env:\n          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}\n          ACCESS_TOKEN: ${{ secrets.GH_TOKEN }}\n\n"
+        }
+    ]
+}
