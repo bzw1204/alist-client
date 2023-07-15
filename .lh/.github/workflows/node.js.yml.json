@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1689388073976,
@@ -24,6 +24,10 @@
                 {
                     "date": 1689391051292,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n       - name: build-win\n         if: matrix.os == 'windows-latest'\n         run: npm run build:win\n         env:\n-          ACCESS_TOKEN: ${{ secrets.GH_TOKEN }}\n+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}\n \n       - name: release\n         uses: softprops/action-gh-release@v1\n         with:\n"
+                },
+                {
+                    "date": 1689391269218,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n \n       - name: release\n         uses: softprops/action-gh-release@v1\n         with:\n-          draft: true\n+          draft: false\n           files: |\n             dist/*.exe\n             dist/*.zip\n             dist/*.dmg\n"
                 }
             ],
             "date": 1689388073976,
