@@ -34,7 +34,7 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: npm run build:win
         env:
-          ACCESS_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: release
         uses: softprops/action-gh-release@v1
