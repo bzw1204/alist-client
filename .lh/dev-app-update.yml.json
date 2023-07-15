@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1689309891543,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1689390142659,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,5 @@\n provider: github\n+repo: alist-client\n+owner: bzw1204\n+releaseType: release\n updaterCacheDirName: alist-client-updater\n"
                 }
             ],
             "date": 1689309891543,

@@ -1,2 +1,5 @@
 provider: github
+repo: alist-client
+owner: bzw1204
+releaseType: release
 updaterCacheDirName: alist-client-updater

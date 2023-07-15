@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 11,
+            "activePatchIndex": 13,
             "patches": [
                 {
                     "date": 1689308187353,
@@ -52,6 +52,14 @@
                 {
                     "date": 1689388085541,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n // Some APIs can only be used after this event occurs.\n app.whenReady().then(() => {\n   autoUpdater.autoDownload = false\n   if (isDev) {\n-    autoUpdater.updateConfigPath = path.join(__dirname, 'dev-app-update.yml');\n+    autoUpdater.updateConfigPath = join(__dirname, 'dev-app-update.yml')\n   }\n   autoUpdater.checkForUpdatesAndNotify()\n   autoUpdater.on('error', (error) => {\n     dialog.showErrorBox('Error', error === null ? '未知错误' : error.message)\n"
+                },
+                {
+                    "date": 1689390092229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,9 @@\n // Some APIs can only be used after this event occurs.\n app.whenReady().then(() => {\n   autoUpdater.autoDownload = false\n   if (isDev) {\n+    autoUpdater.forceDevUpdateConfig = true\n     autoUpdater.updateConfigPath = join(__dirname, 'dev-app-update.yml')\n   }\n   autoUpdater.checkForUpdatesAndNotify()\n   autoUpdater.on('error', (error) => {\n"
+                },
+                {
+                    "date": 1689390106405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n app.whenReady().then(() => {\n   autoUpdater.autoDownload = false\n   if (isDev) {\n     autoUpdater.forceDevUpdateConfig = true\n-    autoUpdater.updateConfigPath = join(__dirname, 'dev-app-update.yml')\n+    autoUpdater.updateConfigPath = join(__dirname, '../../dev-app-update.yml')\n   }\n   autoUpdater.checkForUpdatesAndNotify()\n   autoUpdater.on('error', (error) => {\n     dialog.showErrorBox('Error', error === null ? '未知错误' : error.message)\n"
                 }
             ],
             "date": 1689308187353,
