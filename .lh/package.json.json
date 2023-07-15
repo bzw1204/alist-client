@@ -1,0 +1,18 @@
+{
+    "sourceFile": "package.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1689390636936,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1689390636936,
+            "name": "Commit-0",
+            "content": "{\n  \"name\": \"alist-client\",\n  \"version\": \"1.0.1\",\n  \"description\": \"An Electron application with Vue and TypeScript\",\n  \"main\": \"./out/main/index.js\",\n  \"author\": \"example.com\",\n  \"homepage\": \"https://www.electronjs.org\",\n  \"scripts\": {\n    \"format\": \"prettier --write .\",\n    \"lint\": \"eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts,.vue --fix\",\n    \"typecheck:node\": \"tsc --noEmit -p tsconfig.node.json --composite false\",\n    \"typecheck:web\": \"vue-tsc --noEmit -p tsconfig.web.json --composite false\",\n    \"typecheck\": \"npm run typecheck:node && npm run typecheck:web\",\n    \"start\": \"electron-vite preview\",\n    \"dev\": \"electron-vite dev\",\n    \"build\": \"npm run typecheck && electron-vite build\",\n    \"postinstall\": \"electron-builder install-app-deps\",\n    \"build:win\": \"npm run build && electron-builder --win --config\",\n    \"build:mac\": \"npm run build && electron-builder --mac --config\",\n    \"build:linux\": \"npm run build && electron-builder --linux --config\"\n  },\n  \"dependencies\": {\n    \"@electron-toolkit/preload\": \"^2.0.0\",\n    \"@electron-toolkit/utils\": \"^1.0.2\",\n    \"electron-updater\": \"^5.3.0\"\n  },\n  \"devDependencies\": {\n    \"@electron-toolkit/tsconfig\": \"^1.0.1\",\n    \"@electron/notarize\": \"^1.2.3\",\n    \"@rushstack/eslint-patch\": \"^1.3.2\",\n    \"@types/node\": \"^18.16.19\",\n    \"@vitejs/plugin-vue\": \"^4.2.3\",\n    \"@vue/eslint-config-prettier\": \"^7.1.0\",\n    \"@vue/eslint-config-typescript\": \"^11.0.3\",\n    \"electron\": \"^24.6.2\",\n    \"electron-builder\": \"^23.6.0\",\n    \"electron-vite\": \"^1.0.25\",\n    \"eslint\": \"^8.44.0\",\n    \"eslint-plugin-vue\": \"^9.15.1\",\n    \"less\": \"^4.1.3\",\n    \"prettier\": \"^2.8.8\",\n    \"typescript\": \"^5.1.6\",\n    \"vite\": \"^4.4.2\",\n    \"vue\": \"^3.3.4\",\n    \"vue-tsc\": \"^1.8.4\"\n  }\n}"
+        }
+    ]
+}
